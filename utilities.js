@@ -562,8 +562,9 @@ export const validate = (req,res,next)=>{
     const auth = req.headers.authorization
     const [schema, uniqID] = auth.split(" ")
     if(schema === "Bearer" && uniqID==="@@C0d#("){
-        next()
-        res.sendStatus(200)
+      next()
     }else 
         res.sendStatus(401)
 } 
+
+export const trustOrigin = ['http://localhost:8000','http://localhost:9007']

@@ -1,30 +1,38 @@
 import express from 'express';
-import { products,validate } from './utilities.js';
-const server = express()
+import cors from 'cors'
+import {products,validate,trustOrigin} from './utilities.js';
 let brand = ''
 
+
+const server = express()
+server.use(cors({
+    origin:trustOrigin,
+    methods:m['GET']
+}))
+
 server.get('/',validate,(req,res)=>{
-    res.set("Access-Control-Allow-Origin","*")
-    res.send('Welcome To my First node api')
+    res.send(JSON.stringify('Welcome To my First node api'))
 })
 
 server.get('/products',validate,(req,res)=>{
-    res.set("Access-Control-Allow-Origin","*")
     res.send(products)
 })
 
+server.post('/products/:id',validate,(req,res)=>{
+    const prod = req.params['id']
+    res.send(prod)
+})
+
 server.get('/products/:id',validate,(req,res)=>{
-    res.set("Access-Control-Allow-Origin","*")
     let id = req.params['id']
     res.send(products[id])
 }) 
 
 server.get('/brands',validate,(req,res)=>{
-    res.set("Access-Control-Allow-Origin","*")
     for(let i =0; i<products.length; i++){
         brand += products[i].brand +"\n"
     }
     res.send(brand)
 })
 
-server.listen(3001)
+server.listen(3000)

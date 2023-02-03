@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors'
 import {validate,trustOrigin} from './utilities.js';
-import prodPath from './route_products.js'
-import brandPath from './route_brands.js'
+import prodPath from './routes/route_products.js'
+import brandPath from './routes/route_brands.js'
 
 const server = express()
 

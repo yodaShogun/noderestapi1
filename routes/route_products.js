@@ -1,5 +1,5 @@
 import express from 'express'
-import {products,validate} from './utilities.js'
+import {products,validate} from '../utilities.js'
 
 const prodPath = express.Router()
 
@@ -16,7 +16,6 @@ prodPath.get('/products/:id',validate,(req,res)=>{
     let id = req.params['id']
     res.send(products[id])
 })
-
 
 export default prodPath;
 

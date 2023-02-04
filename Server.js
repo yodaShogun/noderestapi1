@@ -18,4 +18,6 @@ server.get('/',validate,(req,res)=>{
     res.send(JSON.stringify('Welcome To my First node api'))
 })
 
-server.listen(3000)
+server.listen(3000,()=>{
+    console.log();
+})

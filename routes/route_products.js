@@ -1,10 +1,12 @@
 import express from 'express'
 import {products,validate} from '../utilities.js'
+import {fetchUsers} from '../config/request.js'
 
 const prodPath = express.Router()
 
-prodPath.get('/products',validate,(req,res)=>{
-    res.send(products)
+prodPath.get('/products',validate,async (req,res)=>{
+    const data = await fetchUsers()
+    return res.status(200).json(data)
 })
 
 prodPath.post('/products/:id',validate,(req,res)=>{
